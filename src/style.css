@@ -1,5 +1,122 @@
+/* Setup pencil font */
+@font-face {
+  font-family: 'pencilCASE';
+  src: url('./fonts/pencilCASE.ttf');
+}
+
+/* General Style - START */
+* {
+  margin: 0;
+  padding: 0;
+}
+/* General Style - END */
+
+/* Room Style - START */
+#room {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#wall {
+  height: 100%;
+  width: 100%;
+  background: url("./images/Arthur Wallpaper 1000x1000.jpg");
+  background-repeat: repeat;
+  background-color: rgb(220, 220, 216);
+  position: absolute;
+  z-index: 0;
+}
+
+#table {
+  height: 15vh;
+  width: 100vw;
+  background: url("./images/Blue Painted Wood 1000x1000.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(135, 206, 250);
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+}
+/* Room Style - END */
+
+/* Computer Style - START */
+#outer-screen {
+  display: flex;
+  position: relative;
+  margin: auto auto;
+  width: 1000px;
+  height: 750px;
+  background-color: rgb(211, 211, 211);
+  z-index: 3;
+}
+
+#terminal-stand {
+  background-color: rgb(211, 211, 211);
+  z-index: 2;
+}
+
+#post-it {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 2.5%;
+  right: -12%;
+  /* background-color: rgb(255, 255, 0); */
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 0, 95.5%) 80%,
+    rgba(235, 235, 0, 95.5%) 80%
+  );
+  z-index: 10;
+  transform: rotate3d(0, 1, -1, 10deg);
+}
+
+#post-it p {
+  padding: 5%;
+  font-family: 'pencilCASE';
+  font-size: 1.5rem;
+}
+
+#power {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  font-size: 2.5rem;
+  text-align: center;
+  height: 3rem;
+  width: 3rem;
+  color: rgb(150, 0, 0);
+  background-color: rgb(200, 200, 200);
+  z-index: 7;
+
+  /* Make text unselectable */
+  user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+  /* Set cursor */
+  cursor: pointer;
+}
+/* Computer Style - END */
+
+/* Screen Style - START */
+#inner-screen {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  margin: auto auto;
+  z-index: 5;
+}
+/* Screen Style - END */
+
+/* Shell Style - START */
 #shell-wrapper {
-  max-width: 900px;
+  height: 100%;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -7,7 +124,7 @@
 }
 
 #shell-wrapper * {
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 #shell-wrapper pre {
@@ -45,30 +162,50 @@
 }
 
 #shell-wrapper #shell-container {
-  background: #30353A;
+  background: rgb(0, 0, 0);
   font-family: "Courier new", "Courier", monospace;
   text-align: left;
   padding: 10px;
-  height: 360px;
+  height: 90%;
+  min-height: 360px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
+/* CRT effect */
+#shell-wrapper #shell-container.on {
+  background-color: rgb(48, 53, 58);
+  background-image: radial-gradient(
+    rgba(72, 79.5, 87, 0.75), black 120%
+  );
+}
+
+#shell-wrapper #shell-container.on::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  padding: 10px;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.15),
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
 #shell-wrapper #shell-container * {
-  font-size: 14px;
+  font-size: 1.2rem;
   letter-spacing: 1px;
 }
 
-@media screen and (max-width: 500px) {
-  #shell-wrapper #shell-container * {
-    font-size: 11px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  #shell-wrapper #shell-container {
-    height: 200px;
-  }
+#shell-wrapper #shell-container.on * {
+  /* CRT Text effect */
+  text-shadow: 0 0 5px rgb(150, 150, 150);
 }
 
 #shell-wrapper #shell-container h1 {
@@ -81,10 +218,13 @@
   border: none;
   outline: none;
   background: transparent;
-  color: white;
+  color: rgb(255, 255, 255);
   position: relative;
 }
 
 #shell-wrapper #shell-container .terminal-output {
   white-space: pre-wrap;
 }
+/* Shell Style - END */
+
+/* Custom Media Queries */
