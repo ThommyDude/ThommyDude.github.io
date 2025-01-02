@@ -14,7 +14,7 @@ document.addEventListener(
         }
 
         if (currentUrl.searchParams.has('count')) {
-            Number(currentUrl.searchParams.get('count'));
+            diceCount = Number(currentUrl.searchParams.get('count'));
         }
 
         const resultElement = document.getElementById('result');
