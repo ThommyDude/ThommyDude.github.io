@@ -5,9 +5,17 @@ document.addEventListener(
 
         const currentHREF = window.location.href;
         const currentUrl = new URL(currentHREF);
-        
-        const diceType = Number(currentUrl.searchParams.get('dice').replace('d', '')) || 20;
-        const diceCount = Number(currentUrl.searchParams.get('count')) || 1;
+
+        let diceType = 20;
+        let diceCount = 1;
+
+        if (currentUrl.searchParams.has('dice')) {
+            diceType = Number(currentUrl.searchParams.get('dice').replace('d', ''));
+        }
+
+        if (currentUrl.searchParams.has('count')) {
+            Number(currentUrl.searchParams.get('count'));
+        }
 
         const resultElement = document.getElementById('result');
 
