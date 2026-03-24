@@ -58,8 +58,6 @@ function toggleLoginLogoutButtons() {
 // FETCH LIVE CHANNELS FOLLOWED
 // --------------------
 
-loadBtn.addEventListener("click", loadStreams);
-
 async function loadStreams() {
   const token = getAccessToken();
 
@@ -142,11 +140,8 @@ document.addEventListener(
         toggleLoginLogoutButtons();
         const token = getAccessToken();
   
-        // Enable the "Load Streams" button if token exists
         if (token) {
-            loadBtn.disabled = false;
-        } else {
-            loadBtn.disabled = true;
+            loadStreams();
         }
     }
 );
