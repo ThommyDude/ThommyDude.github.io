@@ -2,7 +2,6 @@ const CLIENT_ID = "xpanxsbrd1vpp9t4s1e7357vytvty0";
 const REDIRECT_URI = "https://thommydude.github.io/twitch-following-live/";
 
 const list = document.getElementById("streamList");
-const loadBtn = document.getElementById("loadBtn");
 const loginBtn = document.getElementById("loginBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 
@@ -46,11 +45,9 @@ function toggleLoginLogoutButtons() {
   if (token) {
     loginBtn.style.display = "none";
     logoutBtn.style.display = "inline-block";
-    loadBtn.style.display = "inline-block";
   } else {
     loginBtn.style.display = "inline-block";
     logoutBtn.style.display = "none";
-    loadBtn.style.display = "none";
   }
 }
 
